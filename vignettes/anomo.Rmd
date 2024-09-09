@@ -1,0 +1,39 @@
+---
+title: "anomo"
+author: "Zuchao Shen"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{anomo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+This package implements the Monte Carlo confidence interval (MCCI) method to test (a) the significance of moderation effects and (b) the significance of equivalence test. The main function is the MCCI function.
+
+# 1. Key Arguments in the MCCI Function
+
+## 1.1 MCCI computation
+To compute the MCCI for moderation or equivalence test, we need the following information
+- d1: The estimated effect size for study 1.
+- se1: The standard error of the estimate for study 2.
+- d2: The estimated effect size for study 1.
+- se2: The standard error of the estimate for study 2.
+
+## 1.2 Plot
+The function also provide a plot of the MCCI by default. Arguments are available to adjust the appearance of the plot. See the function documentation for details.
+
+## 1.3 Examples
+
+
+```{r fig.width = 7, fig.height = 3.5}
+ library(anomo)
+myci <- mcci(d1 = .1, se1 = .1, d2 = .3, se2 = .1)
+# Note. Effect difference (the black square representing d2 - d1), 90% MCCI (the thick horizontal line) for the test of equivalence, and 95% MCCI (the thin horizontal line) for the test of moderation (or difference in effects).
+
+```
+
+
+```{r setup}
+# Adjust the plot
+myci <- mcci(d1 = .1, se1 = .1, d2 = .4, se2 = .1,
+             bound.eq = c(-0.1, 0.2), xlim = c(-.2, .7))
+```

@@ -1,0 +1,55 @@
+setwd("D:\\Dropbox\\anomo")
+#devtools::use_vignette()
+Sys.which(Sys.getenv("R_QPDF", "qpdf"))
+Sys.getenv("PATH")
+library(devtools)
+####################
+devtools::spell_check() # spell check
+devtools::check_rhub() # rhub check
+devtools::check_win_devel() # check on win-builder (with `check_win_devel()`)?
+devtools::release() # submit to CRAN
+##############
+#########################################################
+getwd()
+setwd("D:\\Dropbox\\anomo")
+
+devtools::document()
+#install.packages("roxygen2")
+#devtools::use_mit_license() #generate MIT license
+
+library(anomo)
+myci <- mcci(d1 = .1, se1 = .1, d2 = .3, se2 = .1)
+
+myci <- mcci(d1 = .1, se1 = .1, d2 = .4, se2 = .1,
+             bound.eq = c(-0.1, 0.2), xlim = c(-.2, .7))
+
+myci <- mcci(d1 = .1, se1 = .1, d2 = .4, se2 = .1)
+
+
+d1 = .1; se1 = .1; d2 = .2; se2 = .1;
+n.mcci = 10000; sig.level = .05;
+two.tailed = TRUE;
+bound.eq = NULL;
+xlim = NULL;
+xlab = NULL;
+ylab = NULL;
+verbose = TRUE;
+
+rprojroot::find_rstudio_root_file()
+promptPackage()#generate skeletons of documentation
+promptPackage(package = "odr", lib.loc = NULL, filename = NULL,
+              name = NULL, final = FALSE)  #generate skeletons of documentation
+
+
+
+devtools::use_readme_rmd() # create readme
+devtools::use_build_ignore("NEWS.md") # create news
+
+
+devtools::build() #build a package with vignettes
+
+
+devtools::use_cran_comments() # build comments
+
+devtools::revdep_check()
+

@@ -1,0 +1,27 @@
+{
+    "id": "A52E88F8",
+    "path": "D:/Dropbox/LatexR/anomo package.R",
+    "project_path": null,
+    "type": "r_source",
+    "hash": "4036888995",
+    "contents": "",
+    "dirty": false,
+    "created": 1725892054383.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "5,13",
+        "scrollLine": "1",
+        "disableDependencyDiscovery": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1725911195,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1725911195129,
+    "read_only": false,
+    "read_only_alternatives": []
+}
