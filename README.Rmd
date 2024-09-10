@@ -13,17 +13,16 @@ knitr::opts_chunk$set(
 )
 ```
 
-# odr
+# anomo
 
 <!-- badges: start -->
 <!-- badges: end -->
 
 The goal of *anomo* is to help test the equivalence and difference (moderation) effects using the MCCI method. 
-## Installation
+# Installation
 
-You can install the released version of odr from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of  *anomo* from [CRAN](https://CRAN.R-project.org) with
 
 ``` r
-install.packages("anomo")
-
+# install.packages("anomo")
 ```
