@@ -1,18 +1,23 @@
 Package: anomo
 Type: Package
-Title: Analysis of Moderation with the Monte Carlo Confidence Interval Method
-Version: 0.5.1
-Date: 2024-9-9
-Author: Zuchao Shen <zuchao.shen@gmail.com>
-Maintainer: Zuchao Shen <zuchao.shen@gmail.com>
-Description: Analysis of Moderation (anomo) uses the Monte Carlo confidence
-    interval (MCCI) method to test the difference and equivalence of 
-    two effects with summary statistics from two studies.
+Title: Analysis of Moderation, Statistical Power, and Optimal 
+    Design for Studies Detecting Difference and Equivalence
+Version: 1.0.0
+Date: 2025-2-21
+Authors@R: person(given = "Zuchao",
+                       family = "Shen",
+                       role = c("aut", "cre"),
+                       email = "zuchao.shen@gmail.com",
+                       comment = c(ORCID = "0000-0003-3483-0451"))
+Description: Analysis of moderation (ANOMO) method conceptualizes
+    the difference and equivalence tests as a moderation problem to 
+    test the difference and equivalence of 
+    two means (or two effects in two studies).
 Language: en-US
 Depends: R (>= 4.0.0), graphics (>= 4.0.0), base(>= 4.0.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Suggests: rmarkdown, knitr, markdown
+Suggests: rmarkdown, knitr, markdown, odr
 VignetteBuilder: rmarkdown, knitr, markdown
 RoxygenNote: 7.3.2

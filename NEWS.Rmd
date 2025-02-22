@@ -15,5 +15,14 @@ knitr::opts_chunk$set(
 ```
 
 
-# Initial release (version 0.5.1)
+
+# Updates (version 1.0.0)
+- Added optimal sample allocation identification and 
+   power analysis for equivalence tests.
+- Updated the mcci function to include the test of difference and equivalence 
+   for mediation effects.
+- Updated the vignettes to include examples of using results estimated from models.
+
+
+# Initial release (version 0.5.2)
 - The mcci function

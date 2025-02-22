@@ -1,2 +1,10 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^README\.Rmd$
+^README-.*\.png$
+^cran-comments\.md$
+^NEWS\.Rmd$
+^CRAN-RELEASE$
+^CRAN-SUBMISSION$
+^doc$
+^Meta$

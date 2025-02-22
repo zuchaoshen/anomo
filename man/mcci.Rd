@@ -12,7 +12,7 @@ mcci(
   n.mcci = 10000,
   sig.level = 0.05,
   two.tailed = TRUE,
-  bound.eq = NULL,
+  eq.bd = NULL,
   xlim = NULL,
   xlab = NULL,
   ylab = NULL,
@@ -21,26 +21,35 @@ mcci(
 )
 }
 \arguments{
-\item{d1}{The estimated treatment effect for group 1.}
+\item{d1}{The estimated mean(s) (effect(s)) for group 1 (study 1).
+If more than one effect is specified, it assumes that the effects are
+ components of a mediation effect.}
 
-\item{se1}{The estimated standard error of the treatment effect for group 1.}
+\item{se1}{The estimated standard error for d1.
+If more than one standard error is specified, it assumes that they are
+ estimated components of a mediation effect.}
 
-\item{d2}{The estimated treatment effect for group 2.}
+\item{d2}{The estimated mean(s) (effect(s)) for group 2 (study 2).
+If more than one effect is specified, it assumes that the effects are
+ components of a mediation effect.}
 
-\item{se2}{The estimated standard error of the treatment effect for group 2.}
+\item{se2}{The estimated standard error for d2.
+If more than one standard error is specified, it assumes that they are
+ estimated components of a mediation effect.}
 
 \item{n.mcci}{The number of draws for the MCCI method. Default is 10,000.}
 
 \item{sig.level}{The significance level. Default is .05.}
 
-\item{two.tailed}{Logical of two tailed test. Default is TRUE.}
+\item{two.tailed}{Logical of two tailed test for difference test. Default is TRUE.}
 
-\item{bound.eq}{The equivalence bounds for equivalence test. Default is the
-MCCI for the equivalence test. It can be specified in the arguments as
-bound.eq = c(lower bound #, upper bound #).}
+\item{eq.bd}{The limit of the equivalence bounds for an equivalence test.
+Default is the MCCI for the equivalence test.
+It can be specified in the arguments as eq.bd = a positive number or
+eq.bd = c(lower bound #, upper bound #).}
 
 \item{xlim}{The limits set for the x-axis in the plot.
-Default is two times the MCCI for moderation. It can be
+Default is the MCCI for the difference test. It can be
  specified in the arguments as xlim = c(lower #, higher #).}
 
 \item{xlab}{The label for the x-axis in the plot.
@@ -61,13 +70,17 @@ The results of moderation analysis and equivalence tests
     the MCCIs.
 }
 \description{
-Compute Monte Carlo confidence intervals (MCCI) of the
-     difference in two effects from summary statistics. The MCCI can be
-     used to test moderation effects (i.e., whether two effects are
-     statistically different from each) and the equivalence of effects.
+Compute Monte Carlo confidence intervals (MCCIs) for the
+    difference and equivalence tests.
 }
 \examples{
    library(anomo)
+   # compute MCCI from two studies
     myci <- mcci(d1 = .1, se1 = .1, d2 = .2, se2 = .1)
+   # compute MCCI from one study
+   myci <- mcci(d1 = .1, se1 = .1)
+
+# See the package vignettes for more examples, including the MCCI for the
+# test of significance and equivalence for mediation effects in two studies.
 
 }
