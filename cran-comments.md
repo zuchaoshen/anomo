@@ -17,7 +17,7 @@ Please help process the package at your convenience! Thanks a lot!
 * Rhub (windows, macos, linux)
 
 ## R CMD check results
-0 errors √ | 0 warnings √ | 1 notes X (local Windows 11)
+0 errors √ | 0 warnings √ | 0 notes √ (local Windows 11)
 0 errors √ | 0 warnings √  | 1 notes X (win-builder )
 0 errors √ | 0 warnings √  | 0 notes √ (Rhub, windows/macos/linux)
 
