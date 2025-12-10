@@ -2,8 +2,8 @@ Package: anomo
 Type: Package
 Title: Analysis of Moderation, Statistical Power, and Optimal 
     Design for Studies Detecting Difference and Equivalence
-Version: 1.0.0
-Date: 2025-2-21
+Version: 1.2.2
+Date: 2025-12-10
 Authors@R: person(given = "Zuchao",
                        family = "Shen",
                        role = c("aut", "cre"),
@@ -12,12 +12,12 @@ Authors@R: person(given = "Zuchao",
 Description: Analysis of moderation (ANOMO) method conceptualizes
     the difference and equivalence tests as a moderation problem to 
     test the difference and equivalence of 
-    two means (or two effects in two studies).
+    two estimates (e.g., two means or two effects).
 Language: en-US
 Depends: R (>= 4.0.0), graphics (>= 4.0.0), base(>= 4.0.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Suggests: rmarkdown, knitr, markdown, odr
+Suggests: rmarkdown, knitr, markdown, odr, grDevices
 VignetteBuilder: rmarkdown, knitr, markdown
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3

@@ -4,9 +4,9 @@
 #'    the re function from the R package odr.
 #'
 #' @param od Returned object of first design (e.g., unconstrained optimal design)
-#'     from function \code{\link{od.eq.2group}}.
+#'     from function \code{\link{od.1.eq}}.
 #' @param subod Returned object of second design (e.g., constrained optimal design)
-#'     from function \code{\link{od.eq.2group}}.
+#'     from function \code{\link{od.1.eq}}.
 #' @param verbose Logical; print the value of relative efficiency if TRUE,
 #'    otherwise not; default is TRUE.
 #' @param rounded Logical; round the values of \code{p}
@@ -19,9 +19,9 @@
 #'
 #' @examples
 #' # Unconstrained optimal design #----------
-#'   myod1 <- od.eq.2group(r12 = 0.5, c1 = 1, c1t = 20)
+#'   myod1 <- od.1.eq(r12 = 0.5, c1 = 1, c1t = 20)
 #' # Constrained optimal design with p = .50
-#'   myod2 <- od.eq.2group(r12 = 0.5, c1 = 1, c1t = 20, p = .50)
+#'   myod2 <- od.1.eq(r12 = 0.5, c1 = 1, c1t = 20, p = .50)
 #' # Relative efficiency (RE)
 #'   myre <- re(od = myod1, subod= myod2)
 #'   myre$re # RE = 0.71

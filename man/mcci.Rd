@@ -5,13 +5,14 @@
 \title{Compute Monte Carlo Confidence Intervals}
 \usage{
 mcci(
-  d1 = NULL,
-  se1 = NULL,
-  d2 = NULL,
-  se2 = NULL,
+  d = NULL,
+  se = NULL,
+  mediation = FALSE,
   n.mcci = 10000,
   sig.level = 0.05,
+  sig.adjusted = TRUE,
   two.tailed = TRUE,
+  seed = 123,
   eq.bd = NULL,
   xlim = NULL,
   xlab = NULL,
@@ -21,27 +22,37 @@ mcci(
 )
 }
 \arguments{
-\item{d1}{The estimated mean(s) (effect(s)) for group 1 (study 1).
-If more than one effect is specified, it assumes that the effects are
- components of a mediation effect.}
+\item{d}{The estimated effect(s), it has a length of one, two, and four.
+(1) When the length is one, it is an estimated main or moderation effect,
+the MCCI compute the CI for this estimate; (2) When the length is two,
+they represent two estimated effects. These two estimated effects are
+main or moderation effects when \code{mediation}
+is FALSE, the MCCI compute the CI for the difference of the two estimates;
+These two estimated effects are the treatment-mediator and mediator-outcome
+path estimates for a mediation effect when \code{mediation} is TRUE;
+the MCCI compute the CI for the mediation effects. (3) When the length
+is four, they represent the mediation effects in two studies in the
+following order: the treatment-mediator and mediator-outcome
+path estimates in studies (groups) 1 and 2.}
 
-\item{se1}{The estimated standard error for d1.
-If more than one standard error is specified, it assumes that they are
- estimated components of a mediation effect.}
+\item{se}{The corresponding standard error(s) for parameter \code{d}.}
 
-\item{d2}{The estimated mean(s) (effect(s)) for group 2 (study 2).
-If more than one effect is specified, it assumes that the effects are
- components of a mediation effect.}
-
-\item{se2}{The estimated standard error for d2.
-If more than one standard error is specified, it assumes that they are
- estimated components of a mediation effect.}
+\item{mediation}{Logical; \code{d} and \code{se} represent
+parameters for a mediation effect if TRUE; \code{d} and \code{se}
+represent parameters for a main or moderation effect if FALSE;
+default value is FALSE.}
 
 \item{n.mcci}{The number of draws for the MCCI method. Default is 10,000.}
 
 \item{sig.level}{The significance level. Default is .05.}
 
+\item{sig.adjusted}{Logical; use Bonferroni correction (i.e., dividing
+the original significance level by the number of tests) if TRUE,
+otherwise not; default value is TRUE.}
+
 \item{two.tailed}{Logical of two tailed test for difference test. Default is TRUE.}
+
+\item{seed}{Random seed for replication, default is 123.}
 
 \item{eq.bd}{The limit of the equivalence bounds for an equivalence test.
 Default is the MCCI for the equivalence test.
@@ -71,16 +82,29 @@ The results of moderation analysis and equivalence tests
 }
 \description{
 Compute Monte Carlo confidence intervals (MCCIs) for the
-    difference and equivalence tests.
+     difference and equivalence tests.
 }
 \examples{
    library(anomo)
-   # compute MCCI from two studies
-    myci <- mcci(d1 = .1, se1 = .1, d2 = .2, se2 = .1)
-   # compute MCCI from one study
-   myci <- mcci(d1 = .1, se1 = .1)
+# 1. Compute MCCIs for main or moderation effects-----
+   # 1.1. Compute MCCIs for one main or moderation effect from one study
+   myci <- mcci(d = .1, se = .02); myci$out
+   # 1.2 Compute MCCIs for differences in two main (or moderation) effects
+   myci <- mcci(d = c(0.1, 0.15), se = c(.02, 0.01)); myci$out
+   # 1.3 Compute MCCIs for differences across five main (or moderation) effects
+   myci <- mcci(d = c(0.10, 0.15, 0.20, 0.25, 0.30),
+                se = c(0.01, 0.01, 0.02, 0.02, 0.03))
+   myci$out
 
-# See the package vignettes for more examples, including the MCCI for the
-# test of significance and equivalence for mediation effects in two studies.
-
+# 2. Compute MCCIs for mediation effects
+   # 2.1. Compute MCCIs for an estimated mediation effect
+   myci <- mcci(d = c(.1, 0.15), se = c(.02, 0.01), mediation = TRUE)
+   myci$out
+   # 2.1. Compute MCCIs for differences in two mediation effects
+   myci <- mcci(d = c(0.30, 0.50, 0.33, 0.55),
+                se = c(0.02, 0.01, 0.02, 0.03), mediation = TRUE)
+                myci$out
+# 3. Explicitly specify other parameters
+   myci <- mcci(d = .05, se = .02, eq.bd = 0.1) # equivalence bounds
+   myci <- mcci(d = .05, se = .02, xlim = c(-0.15, 0.15)) # Range of x-axis
 }

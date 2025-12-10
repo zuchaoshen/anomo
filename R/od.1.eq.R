@@ -33,20 +33,20 @@
 #'     The function also returns function name, design type,
 #'     and parameters used in the calculation.
 #'
-#' @export od.eq.2group
+#' @export od.1.eq
 #'
 #' @examples
 #' # Unconstrained optimal design #---------
-#'   myod <- od.eq.2group(r12 = 0.5, c1 = 1, c1t = 50)
+#'   myod <- od.1.eq(r12 = 0.5, c1 = 1, c1t = 50)
 #'   myod$out # output
 #'
-od.eq.2group <- function(p = NULL, r12 = NULL,
+od.1.eq <- function(p = NULL, r12 = NULL,
                  c1 = NULL, c1t = NULL, m = NULL,
                  plots = TRUE,
                  plim = NULL, varlim = NULL,
                  plab = NULL, varlab = NULL,
                  vartitle = NULL,verbose = TRUE) {
-  funName <- "od.eq.2group"
+  funName <- "od.1.eq"
   designType <- "individual RCTs"
   if (sum(sapply(list(r12, c1, c1t),
                  function(x) is.null(x))) >= 1)

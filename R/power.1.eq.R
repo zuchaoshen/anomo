@@ -3,13 +3,13 @@
 #' @description Statistical power analysis for equivalence test of
 #'     two-group means.
 #' @param expr Returned object from function
-#'     \code{\link{od.eq.2group}}; default value is NULL;
+#'     \code{\link{od.1.eq}}; default value is NULL;
 #'     if \code{expr} is specified, parameter values of \code{r12},
 #'     \code{c1}, \code{c1t}, and \code{p}
-#'     used or solved in function \code{\link{od.eq.2group}} will
+#'     used or solved in function \code{\link{od.1.eq}} will
 #'     be passed to the current function;
 #'     only the value of \code{p} that specified or solved in
-#'     function \code{\link{od.eq.2group}} can be overwritten
+#'     function \code{\link{od.1.eq}} can be overwritten
 #'     if \code{constraint} is specified.
 #' @param cost.model Logical; power analyses accommodating costs and budget
 #'     (e.g., required budget for desired power, power, minimum detectable
@@ -41,7 +41,7 @@
 #' @param powerlim The range for solving the root of power (power) numerically,
 #'     default value is c(1e-10, 1 - 1e-10).
 #' @param nlim The range for searching the root of sample size (n) numerically,
-#'     default value is c(4, 10e10).
+#'     default value is c(10, 10e10).
 #' @param mlim The range for searching the root of budget (\code{m}) numerically,
 #'     default value is the costs sampling \code{nlim}
 #'     units across treatment conditions or
@@ -54,61 +54,61 @@
 #'     depending on the specification of parameters.
 #'     The function also returns the function name, design type,
 #'     and parameters used in the calculation.
-#' @export power.eq.2group
+#' @export power.1.eq
 #'
 #' @examples
 #'    library(anomo)
 #' # 1. Conventional Power Analyses from Difference Perspectives
 #' # Calculate the required sample size to achieve certain level of power
-#' mysample <- power.eq.2group(d = .1, eq.dis = 0.1,  p =.5,
+#' mysample <- power.1.eq(d = .1, eq.dis = 0.1,  p =.5,
 #'                             r12 = .5, q = 1, power = .8)
 #' mysample$out
 #'
 #' # Calculate power provided by a sample size allocation
-#' mypower <- power.eq.2group(d = 1, eq.dis = .1, n = 1238, p =.5,
+#' mypower <- power.1.eq(d = 1, eq.dis = .1, n = 1238, p =.5,
 #'                            r12 = .5, q = 1)
 #' mypower$out
 #'
 #' # Calculate the minimum detectable distance a given sample size allocation
 #' # can achieve
-#' myeq.dis <- power.eq.2group(d = .1, n = 1238, p =.5,
+#' myeq.dis <- power.1.eq(d = .1, n = 1238, p =.5,
 #'                            r12 = .5, q = 1, power = .8)
 #' myeq.dis$out
 #'
 #' # 2. Power Analyses Using Optimal Sample Allocation
-#' myod <- od.eq.2group(r12 = 0.5, c1 = 1, c1t = 10)
-#' budget <- power.eq.2group(expr = myod, d = .1, eq.dis = 0.1,
+#' myod <- od.1.eq(r12 = 0.5, c1 = 1, c1t = 10)
+#' budget <- power.1.eq(expr = myod, d = .1, eq.dis = 0.1,
 #'                           q = 1, power = .8)
-#' budget.balanced <- power.eq.2group(expr = myod, d = .1, eq.dis = 0.1,
+#' budget.balanced <- power.1.eq(expr = myod, d = .1, eq.dis = 0.1,
 #'                                    q = 1, power = .8,
 #'                                    constraint = list(p = .50))
 #' (budget.balanced$out$m-budget$out$m)/budget$out$m *100
 #' # 27% more budget required from the balanced design with p = 0.50.
 #'
-power.eq.2group <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
-                            d = NULL, eq.dis = NULL, m = NULL, c1 = NULL,
-                            c1t = NULL,
-                            n = NULL, p = NULL, q = 1, sig.level = .05,
-                            r12 = NULL, power = NULL, powerlim = NULL,
-                            nlim = NULL, mlim = NULL, eq.dislim = NULL,
-                            verbose = TRUE) {
+power.1.eq <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
+                       d = NULL, eq.dis = NULL, m = NULL, c1 = NULL,
+                       c1t = NULL, n = NULL, p = NULL, q = 1,
+                       sig.level = .05, r12 = NULL, power = NULL,
+                       powerlim = NULL,
+                       nlim = NULL, mlim = NULL, eq.dislim = NULL,
+                       verbose = TRUE) {
   #  eq.upper = abs(d) + eq.dis
   #  eq.lower = -eq.upper
-  funName <- "power.eq.2group"
-  designType = "Equivalence Test for Two-Group Means"
+  funName <- "power.1.eq"
+  designType = "Equivalence Test in RCTs"
   par <- list(cost.model = cost.model, expr = expr, constraint = constraint,
               d = d, n = n, p = p, q = q, eq.dis = eq.dis,
               sig.level = sig.level, r12 = r12, verbose = verbose)
   NumberCheck <- function(x) {!is.null(x) && !is.numeric(x)}
   if (!is.null(expr)) {
-    if (expr$funName != "od.eq.2group") {
+    if (expr$funName != "od.1.eq") {
       stop("'expr' can only be NULL or
-            the return from the function of 'od.eq.2group'")
+            the return from the function of 'od.1.eq'")
     } else {
       if (sum(sapply(list(r12, c1, c1t, p),
                      function(x) {!is.null(x)})) >= 1)
         stop("parameters of 'r12', 'c1', 'c1t', 'p'
-             have been specified in expr of 'od.eq.2group'")
+             have been specified in expr of 'od.1.eq'")
       r12 <- expr$par$r12
       c1 <- expr$par$c1
       c1t <- expr$par$c1t
@@ -120,7 +120,7 @@ power.eq.2group <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
                    function(x) is.null(x))) >= 1)
       stop("All of 'p', 'r12', and 'q' must be specified when
            cost.model is FALSE")
-    if (sum(sapply(list(d,q, r12), function(x) {
+    if (sum(sapply(list(d, q, r12), function(x) {
       NumberCheck(x)
     })) >= 1)
       stop("'d', 'q', 'r12' must be numeric")
@@ -155,7 +155,7 @@ power.eq.2group <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
       y
     }
   }
-  nlim <- limFun(x = nlim, y = c(4, 10e10))
+  nlim <- limFun(x = nlim, y = c(10, 10e10))
   powerlim <- limFun(x = powerlim, y = c(1e-10, 1 - 1e-10))
   eq.dislim <- limFun(x = eq.dislim, y = c(0, 5))
 

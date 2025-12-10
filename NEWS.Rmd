@@ -14,7 +14,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-
+# Updates (version 1.2.2)
+- Updated the mcci function to include the test of difference and    equivalence for up to five estimates
+- Updated the input argument (of d and se) in the mcci function
+- Updated the plot functionality in the mcci function
+- Changed the function name (from od.eq.2group to od.1.eq)
+- Changed the function name (from power.eq.2group to power.1.eq)
 
 # Updates (version 1.0.0)
 - Added optimal sample allocation identification and 
