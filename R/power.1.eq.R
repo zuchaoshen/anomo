@@ -94,6 +94,7 @@ power.1.eq <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
                        verbose = TRUE) {
   #  eq.upper = abs(d) + eq.dis
   #  eq.lower = -eq.upper
+
   funName <- "power.1.eq"
   designType = "Equivalence Test in RCTs"
   par <- list(cost.model = cost.model, expr = expr, constraint = constraint,
@@ -163,10 +164,10 @@ power.1.eq <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
   if(cost.model){
     pwr.expr <- quote({
       n <- m / ((1 - p) * c1 + p * c1t);
-      (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = abs(d-(abs(d) + eq.dis))/
+      (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = (d+(abs(d)+eq.dis))/
               sqrt((1-r12)/(n*p*(1-p)))))*
-        (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = (d+abs(d) + eq.dis)/
-                sqrt((1-r12)/(n*p*(1-p)))))
+        pt(qt(sig.level, df=n-q-2), df = n-q-2, ncp = (d-(abs(d)+eq.dis))/
+                sqrt((1-r12)/(n*p*(1-p))))
     })
       if (is.null(power)) {
         out <- list(power = eval(pwr.expr))
@@ -195,10 +196,10 @@ power.1.eq <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
         }}
   }else{
     pwr.expr <- quote({
-      (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = abs(d-(abs(d) + eq.dis))/
+      (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = (d+(abs(d)+eq.dis))/
               sqrt((1-r12)/(n*p*(1-p)))))*
-        (1-pt(qt(1-sig.level, df=n-q-2), df = n-q-2, ncp = (d+abs(d) + eq.dis)/
-                sqrt((1-r12)/(n*p*(1-p)))))
+        pt(qt(sig.level, df=n-q-2), df = n-q-2, ncp = (d-(abs(d)+eq.dis))/
+             sqrt((1-r12)/(n*p*(1-p))))
     })
     if (is.null(power)) {
       out <- list(power = eval(pwr.expr))
@@ -225,7 +226,3 @@ power.1.eq <- function(cost.model = FALSE, expr = NULL, constraint = NULL,
                     par = par, out = out)
     return(power.out)
   }
-
-
-
-

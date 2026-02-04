@@ -206,6 +206,7 @@ if (length(d)==1){
     }}
   if(is.null(ylab)){ylab = ""}
 
+  figure <- graphics::par(mfrow = c(1, 1))
   graphics::plot(x = df[1,], y = 1:length(df[1,]),
                  xlim = xlim, ylim = c(0.5, length(df[1,])+ 0.5),
                  xlab = xlab, ylab = ylab,
@@ -222,9 +223,6 @@ if (length(d)==1){
       graphics::abline(v = bound.eq[2], lty = 3)
       graphics::abline(v = 0, lty = 5)
   }
-  figure <- grDevices::recordPlot()
-  grDevices::dev.off()
-
     if (verbose) {
       if(length(d.mc)/n.mcci==1){
         print(paste("The ", (1-sig.level)*100,
@@ -242,6 +240,6 @@ if (length(d)==1){
             sep = ""))
       }
     }
-  results <- list(par = par, out = list(mcci = df, plot = figure))
+  results <- list(par = par, out = df, plot = figure)
   return(results)
   }
