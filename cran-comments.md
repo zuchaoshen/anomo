@@ -6,8 +6,7 @@ function for the plot; (b) updating the power.1.eq
 function, and (c) updating 
  examples to illustrate the use of functions.
 
-Across operational systems we tested, there are no errors or warnings, 
-there is one note can be ignored (see below).
+Across operational systems we tested, there are no errors or warnings.
 
 Please help process the package at your convenience! Thanks a lot! 
 
