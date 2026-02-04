@@ -71,7 +71,6 @@ if (expr$funName == "od.1.eq") {
                      main = plot.title, col = "black")
       graphics::abline(v = expr$out$p, lty = 2, col = "black")
       figure <- grDevices::recordPlot()
-#      grDevices::dev.off()
     }
   }
 return(plot = figure)

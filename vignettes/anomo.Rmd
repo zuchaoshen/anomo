@@ -60,6 +60,7 @@ difference in means.
 ```{r fig.width = 7, fig.height = 3.5}
  library(anomo)
 myci <- mcci(d = c(.1, .15), se = c(.01, .01))
+myci$out
 # Note. Effect difference (the black square representing d1 - d2), 90% MCCI 
 # (the thick horizontal line) for the test of equivalence, and 95% MCCI 
 # (the thin horizontal line) for the test of moderation 
@@ -71,7 +72,7 @@ myci <- mcci(d = c(.1, .15), se = c(.01, .01))
 ```{r}
 # Adjust the plot
 myci <- mcci(d = c(.1, .15), se = c(.01, .01),
-             eq.bd = c(-0.2, 0.2), xlim = c(-.2, .7))
+             eq.bd = c(-0.2, 0.2), xlim = c(-.2, .2))
 ```
 
 

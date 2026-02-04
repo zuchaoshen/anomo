@@ -2,8 +2,8 @@
 
 This is a resubmission to update the package. 
 The updates include (a) updating the mcci
-function for up to five estimates and improving the input functionality; 
-(b) fixing bugs for the plots; and (c) updating 
+function for the plot; (b) updating the power.1.eq 
+function, and (c) updating 
  examples to illustrate the use of functions.
 
 Across operational systems we tested, there are no errors or warnings, 

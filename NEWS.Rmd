@@ -14,6 +14,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Updates (version 1.3.2)
+- Updated the mcci function (e.g., its plot) and power.1.eq function (e.g., the underlying power formula)
+
+
 # Updates (version 1.2.2)
 - Updated the mcci function to include the test of difference and    equivalence for up to five estimates
 - Updated the input argument (of d and se) in the mcci function
